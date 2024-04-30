@@ -1,0 +1,29 @@
+{{>header}}
+
+
+<div class="ui container" id="filmDetail">
+    <div class="ui grid film-detail-container">
+        <div class="one wide column"></div>
+        <div class="four wide column">
+            <img class="ui image rounded animated bounceInDown" src="{{film.url}}">
+        </div>
+        <div class="ten wide column">
+            <h1 class="ui inverted header dividing">
+                <span id="film-title">{{ film.title }}</span> ({{ film.releaseYear }})
+            </h1>
+            <h4 class="ui inverted header">
+                <p id="film-synopsis" class="inverted-text">
+                    {{ film.synopsis }}
+                </p>
+                <p>
+                    <button id="remove-film" class="ui button orange-block" onclick="location.href='/removefilm/{{film.id}}'"><i class="trash icon"></i>Remove</button>
+                    <button id="edit-film" class="ui button orange-block" onclick="location.href='/editfilm/{{film.id}}'"><i class="edit icon"></i>Edit</button>
+                    <button id="all-films" class="ui button orange-block" onclick="location.href='/'"><i class="film icon"></i>All Films</button>
+                </p>
+        </div>
+    </div>
+</div>
+
+
+
+{{>footer}}

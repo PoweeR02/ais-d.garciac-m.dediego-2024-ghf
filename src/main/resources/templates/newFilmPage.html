@@ -1,0 +1,29 @@
+{{>header}}
+<div id="new-book" class="ui segment container">
+    <form action="/createfilm" method="post" class="ui form">
+        <h2>New Film</h2>
+        <div class="field">
+            <label>Title </label>
+            <input name="title" placeholder="A title" />
+        </div>
+        <div class="field">
+            <label>Year</label>
+            <input type="number" name="releaseYear" placeholder="A year" />
+        </div>
+        <div class="field">
+            <label>Image url </label>
+            <input name="url" placeholder="An URL for poster image" />
+        </div>
+        <div class="field">
+            <label>Synopsis </label>
+            <textarea name="synopsis" placeholder="A synopsis of film"></textarea>
+        </div>
+        <p>
+            <button class="ui button" onclick="location.href='/'; return false;">Cancel</button>
+            <input class="ui button orange" type="submit" id="Save" value="Save" />
+        </p>
+    </form>
+</div>
+
+
+{{>footer}}
