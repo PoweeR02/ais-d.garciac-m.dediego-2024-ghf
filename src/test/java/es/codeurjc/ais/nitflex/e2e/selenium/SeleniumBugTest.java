@@ -26,9 +26,9 @@ class SeleniumBugTest {
 
     @BeforeEach
     public void setupTest() {
-        driver = new ChromeDriver();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--headless");
+        driver = new ChromeDriver(options);
         baseUrl = "http://localhost:" + port + "/";
     }
 
