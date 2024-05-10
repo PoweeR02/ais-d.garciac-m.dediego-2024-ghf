@@ -26,5 +26,5 @@ jobs:
         run: mvn test -P integration
 
       - name: Run Selenium Test
-        run: mvn test -P selenium
+        run: mvn test -P selenium 
       
