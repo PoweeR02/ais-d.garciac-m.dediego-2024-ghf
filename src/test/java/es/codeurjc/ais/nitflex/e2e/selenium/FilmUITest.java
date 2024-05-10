@@ -30,7 +30,7 @@ public class FilmUITest {
     public void setup() {
         this.driver = new ChromeDriver();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
+        options.addArguments("--headless");
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     }
 

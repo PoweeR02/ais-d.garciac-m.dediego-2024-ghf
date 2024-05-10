@@ -29,7 +29,7 @@ class SeleniumTest {
     public void setupTest() {
         driver = new ChromeDriver();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
+        options.addArguments("--headless");
         baseUrl = "http://localhost:" + port + "/";
     }
 
