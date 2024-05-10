@@ -1,29 +1,23 @@
 {{>header}}
 
-<div class="ui segments container">
-    <div class="ui segment">
+<div class="ui segment container">
 
-        <h1 class="ui header">Welcome to Nitflex</h1>
-    
-        <div class="ui grid">
-            {{#films}}
-            <div class="two wide column film ">
-                <img class="ui image poster" src="{{url}}">
-                <span class="film-details">
-                    <a class="film-title" href="/films/{{id}}">{{title}}</a>
-                    <br>
-                    <span class="year">{{releaseYear}}</span>
-                </span>
-            </div>
-            {{/films}}
+    <h1 class="ui header">All films</h1>
+
+    <div class="ui grid">
+        {{#films}}
+        <div class="two wide column film ">
+            <img class="ui image poster" src="{{url}}">
+            <span class="film-details">
+				<a class="film-title" href="/films/{{id}}">{{title}}</a>
+				<br>
+				<span class="year">{{releaseYear}}</span>
+            </span>
         </div>
-    
-        <button id="create-film" class="ui button orange-block" onclick="location.href='/newfilm'">New film</button>
+        {{/films}}
     </div>
-    <div class="ui secondary segment">
-        <p>Version: {{ gitHash }}</p>
-    </div>
-</div>
 
+    <button id="create-film" class="ui button orange-block" onclick="location.href='/newfilm'">New film</button>
+</div>
 
 {{>footer}}

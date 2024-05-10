@@ -3,7 +3,7 @@
 <div id="new-book" class="ui segment container">
     <form action="/editfilm" method="post" class="ui form">
         <input type="hidden" name="id" value="{{film.id}}" />
-        <h2>Edit Film</h2>
+        <h2>New Film</h2>
         <div class="field">
             <label>Title </label>
             <input name="title" value="{{film.title}}" placeholder="A title" />
@@ -21,7 +21,7 @@
             <textarea name="synopsis" placeholder="A synopsis of film">{{film.synopsis}}</textarea>
         </div>
         <p>
-            <button class="ui button" onclick="location.href='/film/{{film.id}}'; return false;">Cancel</button>
+            <button id="Cancel" class="ui button" onclick="location.href='/films/{{film.id}}'; return false;">Cancel</button>
             <input class="ui button orange" type="submit" id="Save" value="Save" />
         </p>
     </form>
