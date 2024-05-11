@@ -1,9 +1,9 @@
 name: CI Workflow 2
 
 on:
-  pull_request:
-
-    
+  push:
+    branches:
+      - pruebas-2
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -23,6 +23,6 @@ jobs:
       - name: Run Integration Testing
         run: mvn test -P integration
 
-      - name: Run Selenium Testing
+      - name: Run Selenium Test
         run: mvn test -P selenium 
       
