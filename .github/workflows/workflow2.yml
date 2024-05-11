@@ -1,28 +1,30 @@
-name: CI Workflow 2
+name: New Feature Request Workflow 2
 
 on:
-  push:
+  pull_request:
     branches:
-      - pruebas-2
+      - main
+
 jobs:
   test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
+    runs-on: ubuntu-latest 
+    steps:        
+      - name: Checkout code         
         uses: actions/checkout@v4
-
+            
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
-          
-      - name: Run Unitary Testing
-        run: mvn test -P unitary
 
-      - name: Run Integration Testing
+      - name: Run Maven Unitary Tests
+        run: mvn test -P unitary-tests
+        
+
+      - name: Run Maven Integration Tests
         run: mvn test -P integration
+        
 
-      - name: Run Selenium Test
-        run: mvn test -P selenium 
-      
+      - name: Run Maven Smoke Tests
+        run: mvn test -P selenium
