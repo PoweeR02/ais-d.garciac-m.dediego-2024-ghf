@@ -1,7 +1,7 @@
 name: CI Workflow 3
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
