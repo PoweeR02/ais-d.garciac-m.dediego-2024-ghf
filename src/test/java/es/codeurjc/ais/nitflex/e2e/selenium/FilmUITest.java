@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -27,23 +28,25 @@ public class FilmUITest {
 
     @BeforeEach
     public void setup() {
-        this.driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     }
 
-	@AfterEach
-	public void teardown() {
-		if (this.driver != null) {
+    @AfterEach
+    public void teardown() {
+        if (this.driver != null) {
             this.driver.quit();
-		}
+        }
     }
 
     @Test
     @DisplayName("Añadir una nueva película y comprobar que se ha creado")
-	public void createFilmTest() throws Exception {
+    public void createFilmTest() throws Exception {
 
         // GIVEN: Partiendo de que estamos en la página principal de la web
-        this.driver.get("http://localhost:"+this.port+"/");
+        this.driver.get("http://localhost:" + this.port + "/");
 
         // WHEN: Creamos un nueva película
 
