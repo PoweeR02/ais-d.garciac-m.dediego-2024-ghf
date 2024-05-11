@@ -1,4 +1,4 @@
-name: New Feature Request Workflow 2
+name: CI Workflow 2
 
 on:
   pull_request:
@@ -18,13 +18,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Run Maven Unitary Tests
-        run: mvn test -P unitary-tests
+      - name: Run Unitary Tests
+        run: mvn test -P unitary
         
-
-      - name: Run Maven Integration Tests
+      - name: Run Integration Tests
         run: mvn test -P integration
         
-
-      - name: Run Maven Smoke Tests
+      - name: Run Selenium Tests
         run: mvn test -P selenium
