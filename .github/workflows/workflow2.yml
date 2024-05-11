@@ -18,12 +18,12 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           
-      - name: Run Unitary Test
+      - name: Run Unitary Testing
         run: mvn test -P unitary
 
-      - name: Run Integration Test
+      - name: Run Integration Testing
         run: mvn test -P integration
 
-      - name: Run Selenium Test
+      - name: Run Selenium Testing
         run: mvn test -P selenium 
       
