@@ -2,8 +2,8 @@ name: CI Workflow 3
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: [main]
+    types: [closed]
 
 jobs:
   test:
