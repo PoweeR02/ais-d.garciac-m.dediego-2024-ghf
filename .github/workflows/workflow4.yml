@@ -2,16 +2,15 @@ name: CI Workflow 4
 
 on:
   schedule:
-    - cron: '30 0 * * *'  # Ejecutar todos los días a las 17:40 UTC
+    - cron: '0 2 * * *'  
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  run_system_tests:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         browser: [chrome, firefox, edge, safari]
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -24,5 +23,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run system tests
-        run: npm test ${{ matrix.os }} ${{ matrix.browser }}
+      - name: Run system test
+        run: npm test ${{ matrix.browser }} ${{ runner.os }}
