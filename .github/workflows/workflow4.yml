@@ -2,7 +2,7 @@ name: CI Workflow 4
 
 on:
   schedule:
-    - cron: '15 2 * * *'  # Ejecutar a las 2:15 CET
+    - cron: '15 9 * * *'  # Ejecutar a las 2:15 CET
 
 jobs:
   run_system_tests:
@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
