@@ -1,11 +1,7 @@
 name: CI Workflow 3
 
 on:
-  workflow_dispatch:
-
-permissions:
-  id-token: write
-  contents: read
+  push:
 
 jobs:
   build:
