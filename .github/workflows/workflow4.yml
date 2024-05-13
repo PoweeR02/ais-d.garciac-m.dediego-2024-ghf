@@ -9,24 +9,21 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        include:
-          - os: ubuntu-latest
-            browser: chrome
-          - os: ubuntu-latest
-            browser: firefox
-          - os: windows-latest
-            browser: chrome
-          - os: windows-latest
-            browser: firefox
-          - os: windows-latest
+        os: [ubuntu, windows, macos]
+        browser: [chrome, firefox, edge, safari]
+        exclude:
+          - os: ubuntu
             browser: edge
-          - os: macos-latest
-            browser: chrome
-          - os: macos-latest
-            browser: firefox
-          - os: macos-latest
+
+          - os: ubuntu
             browser: safari
 
+          - os: windows
+            browser: safari
+
+          - os: macos
+            browser: edge
+          
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
