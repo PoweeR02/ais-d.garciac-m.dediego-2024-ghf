@@ -50,3 +50,5 @@ jobs:
           --dns-name-label ais-anuncios \  
           --ports 8080  
       
+
+          
