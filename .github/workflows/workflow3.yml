@@ -42,6 +42,6 @@ jobs:
           az container create \
           --resource-group ${{ secrets.AZURE_GROUP }} \
           --name anuncios \
-          --image ${{ secrets.DOCKERHUB_USERNAME }}/anuncios:latest \
+          --image ${{ secrets.DOCKERHUB_USERNAME }}/anuncios:${{ github.sha }} \
           --dns-name-label ais-anuncios \
           --ports 8080
