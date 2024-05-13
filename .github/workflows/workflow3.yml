@@ -3,6 +3,10 @@ name: CI Workflow 3
 on:
   push:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
