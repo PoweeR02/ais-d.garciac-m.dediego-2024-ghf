@@ -13,30 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build and push Docker image
-        run: |
-          docker buildx build --platform linux/amd64 -t poweer02/nitflex:${{ github.sha }} .
-          docker push poweer02/nitflex:${{ github.sha }}
-
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Deploy to Azure
-        run: |
-          az webapp deployment container config --name PoweeR02 --resource-group ais-group --docker-custom-image-name poweer02/nitflex:${{ github.sha }}
-          az webapp restart --name PoweeR02 --resource-group ais-group
-
-      - name: Smoke Test
-        run: |
-          mvn -Dhost=https://PoweeR02.azurewebsites.net test
+      - name: Generate Docker image
+        run: mvn spring-boot:build-image -DskipTests
+          -Dspring-boot.build-image.imageName=${{ secrets.DOCKERHUB_USERNAME }}/anuncios:${{ github.sha }}
+ 
+      - name: Login to DockerHub
+        run: docker login
+          -u "${{ secrets.DOCKERHUB_USERNAME }}" -p "${{ secrets.DOCKERHUB_TOKEN }}"
+ 
+      - name: Push image to DockerHub
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/anuncios:${{ github.sha }}
