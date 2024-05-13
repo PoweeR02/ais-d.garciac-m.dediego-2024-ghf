@@ -56,5 +56,4 @@ jobs:
     steps:
       - name: Run smoke test
         run: |
-          cd $GITHUB_WORKSPACE
-          mvn -Dhost=URL_DE_LA_APLICACION test
+          mvn -Dhost=http://ais-anuncios.westeurope.azurecontainer.io:8080 test
