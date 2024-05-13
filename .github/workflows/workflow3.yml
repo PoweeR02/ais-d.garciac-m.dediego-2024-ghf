@@ -56,4 +56,4 @@ jobs:
     steps:
       - name: Run smoke test
         run: |
-            mvn -Dhost=C:\Users\david\Downloads\ais-d.garciac-m.dediego-2024-ghf test
+          mvn -Dhost=http://ais-anuncios.westeurope.azurecontainer.io:8080 test
