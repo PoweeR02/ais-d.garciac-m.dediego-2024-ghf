@@ -49,3 +49,11 @@ jobs:
           --image ${{ secrets.DOCKERHUB_USERNAME }}/anuncios:${{ github.sha }} \
           --dns-name-label ais-anuncios \
           --ports 8080
+
+  smoke_test:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: 'Run smoke test'
+        run: |
+          mvn -Dhost=URL_DE_LA_APLICACION test

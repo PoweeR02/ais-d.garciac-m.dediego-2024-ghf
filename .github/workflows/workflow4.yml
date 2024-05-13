@@ -2,7 +2,7 @@ name: CI Workflow 4
 
 on:
   schedule:
-    - cron: '50 17 * * *'  # Ejecutar a las 2:15 CET
+    - cron: '00 20 * * *'  # Ejecutar a las 2:15 CET
 
 jobs:
   run_system_tests:
