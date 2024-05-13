@@ -56,4 +56,4 @@ jobs:
     steps:
       - name: Run smoke test
         run: |
-          mvn test -P integration
+          mvn -Dhost=http://ais-anuncios.westeurope.azurecontainer.io:8080 test
