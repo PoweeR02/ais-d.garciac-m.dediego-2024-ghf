@@ -13,18 +13,6 @@ jobs:
       matrix:
         browser: [ chrome, firefox, edge, safari ]
         os: [ ubuntu-latest, windows-latest, macos-latest ]
-        exclude:
-          - browser: edge
-            os: ubuntu-latest
-            
-          - browser: safari
-            os: ubuntu-latest
-
-          - browser: safari
-            os: windows-latest
-
-          - browser: edge
-            os: macos-latest
           
     steps:
       - name: Checkout repository

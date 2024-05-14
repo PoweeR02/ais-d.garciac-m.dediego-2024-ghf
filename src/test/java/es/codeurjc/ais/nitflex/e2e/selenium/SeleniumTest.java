@@ -3,7 +3,14 @@ package es.codeurjc.ais.nitflex.e2e.selenium;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -27,36 +34,50 @@ class SeleniumTest {
     @LocalServerPort
     int port;
 
-    private String browser;
+    public static Map<String, List<String>> OperativeSystemToBrowser;
     private WebDriver driver;
     private String baseUrl;
 
+    private WebDriver getDriver() {
+        WebDriver driver = null;
+        String browser = System.getProperty("browser");
+        String os = System.getProperty("os");
+        if (OperativeSystemToBrowser.get(os).contains(browser)) {
+            switch (browser) {
+                case "safari":
+                    driver = new SafariDriver();
+                    break;
+                case "chrome":
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.addArguments("--headless");
+                    driver = new ChromeDriver(chromeOptions);
+                    break;
+                case "edge":
+                    EdgeOptions options = new EdgeOptions();
+                    options.addArguments("--headless");
+                    driver = new EdgeDriver(options);
+                    break;
+                default:
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.addArguments("--headless");
+                    driver = new FirefoxDriver(firefoxOptions);
+            }
+        }
+
+        return driver;
+    }
+
+    @BeforeAll
+    public static void initialiceMap() {
+        OperativeSystemToBrowser = new HashMap<>();
+        OperativeSystemToBrowser.put("macos-latest", new ArrayList<>(Arrays.asList("safari", "chrome", "firefox")));
+        OperativeSystemToBrowser.put("ubuntu-latest", new ArrayList<>(Arrays.asList("chrome", "firefox")));
+        OperativeSystemToBrowser.put("windows-latest", new ArrayList<>(Arrays.asList("edge", "chrome", "firefox")));
+    }
+
     @BeforeEach
     public void setupTest() {
-        browser = System.getProperty("browser", "chrome");
-        switch (browser) {
-            case "chrome":
-                ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--headless");
-                driver = new ChromeDriver(chromeOptions);
-                break;
-            case "firefox":
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.addArguments("--headless");
-                driver = new FirefoxDriver(firefoxOptions);
-                break;
-            case "edge":
-                EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--headless");
-                driver = new EdgeDriver(edgeOptions);
-                break;
-            case "safari":
-                driver = new SafariDriver();
-                break;
-            default:
-                throw new RuntimeException("Unsupported browser: " + browser);
-        }
-        baseUrl = "http://localhost:" + port + "/";
+        driver = getDriver();
     }
 
     @AfterEach
