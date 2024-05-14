@@ -3,7 +3,7 @@ name: CI Workflow 4
 on:
   push:
   schedule:
-    - cron: "20 12 * * *" # 10 : 36 -> "30 20 * * *"
+    - cron: "0 0 * * *" 
 
 jobs:
   system-tests:
