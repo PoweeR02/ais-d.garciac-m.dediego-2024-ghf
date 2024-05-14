@@ -40,19 +40,21 @@ class SeleniumTest {
                 chromeOptions.addArguments("--headless");
                 driver = new ChromeDriver(chromeOptions);
                 break;
-            case "firefox":
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.addArguments("--headless");
-                driver = new FirefoxDriver(firefoxOptions);
-                break;
-            case "edge":
-                EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--headless");
-                driver = new EdgeDriver(edgeOptions);
-                break;
-            case "safari":
-                driver = new SafariDriver();
-                break;
+            /*
+             * case "firefox":
+             * FirefoxOptions firefoxOptions = new FirefoxOptions();
+             * firefoxOptions.addArguments("--headless");
+             * driver = new FirefoxDriver(firefoxOptions);
+             * break;
+             * case "edge":
+             * EdgeOptions edgeOptions = new EdgeOptions();
+             * edgeOptions.addArguments("--headless");
+             * driver = new EdgeDriver(edgeOptions);
+             * break;
+             * case "safari":
+             * driver = new SafariDriver();
+             * break;
+             */
             default:
                 throw new RuntimeException("Unsupported browser: " + browser);
         }
