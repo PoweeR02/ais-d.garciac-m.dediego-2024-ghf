@@ -10,6 +10,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,14 +28,35 @@ public class FilmUITest {
     @LocalServerPort
     int port;
 
+    protected String browser;
     protected WebDriver driver;
     protected WebDriverWait wait;
 
     @BeforeEach
     public void setup() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
+        browser = System.getProperty("browser", "firefox").toLowerCase();
+        switch (browser) {
+            case "chrome":
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--headless");
+                driver = new ChromeDriver(chromeOptions);
+                break;
+            case "firefox":
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("--headless");
+                driver = new FirefoxDriver(firefoxOptions);
+                break;
+            case "edge":
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--headless");
+                driver = new EdgeDriver(edgeOptions);
+                break;
+            case "safari":
+                driver = new SafariDriver();
+                break;
+            default:
+                throw new RuntimeException("Unsupported browser: " + browser);
+        }
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     }
 

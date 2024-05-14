@@ -10,6 +10,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.safari.SafariDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
@@ -21,14 +26,35 @@ class SeleniumBugTest {
     @LocalServerPort
     int port;
 
+    private String browser;
     private WebDriver driver;
     private String baseUrl;
 
     @BeforeEach
     public void setupTest() {
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
+        browser = System.getProperty("browser", "firefox").toLowerCase();
+        switch (browser) {
+            case "chrome":
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.addArguments("--headless");
+                driver = new ChromeDriver(chromeOptions);
+                break;
+            case "firefox":
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("--headless");
+                driver = new FirefoxDriver(firefoxOptions);
+                break;
+            case "edge":
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--headless");
+                driver = new EdgeDriver(edgeOptions);
+                break;
+            case "safari":
+                driver = new SafariDriver();
+                break;
+            default:
+                throw new RuntimeException("Unsupported browser: " + browser);
+        }
         baseUrl = "http://localhost:" + port + "/";
     }
 

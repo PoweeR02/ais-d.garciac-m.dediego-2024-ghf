@@ -1,6 +1,7 @@
 name: CI Workflow 4
 
 on:
+  push:
   schedule:
     - cron: "0 0 * * *" 
 
