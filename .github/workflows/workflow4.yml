@@ -2,7 +2,7 @@ name: Workflow 4
 
 on:
   schedule:
-    - cron: "54 11 * * *" # 10 : 36 -> "30 20 * * *"
+    - cron: "20 12 * * *" # 10 : 36 -> "30 20 * * *"
 
 jobs:
   system-tests:
@@ -21,17 +21,16 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
         with:
-          node-version: '16'
-
-      - name: Install dependencies
-        run: |
-          npm install
+          distribution: 'temurin'
+          java-version: '17'
 
       - name: Run system tests
         run: |
-          npm run test:system -- --browser ${{ matrix.browser }} --os ${{ matrix.os }}
+          java -cp src/e2e/selenium SeleniumTest.java SeleniumBugTest.java FilmUITest.java \
+            -Dbrowser=${{ matrix.browser }} \
+            -Dos=${{ matrix.os }}
