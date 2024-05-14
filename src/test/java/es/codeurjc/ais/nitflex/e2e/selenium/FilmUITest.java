@@ -34,7 +34,7 @@ public class FilmUITest {
 
     @BeforeEach
     public void setup() {
-        browser = System.getProperty("browser", "chrome");
+        browser = System.getProperty("browser");
         switch (browser) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -53,9 +53,6 @@ public class FilmUITest {
                 break;
             case "safari":
                 driver = new SafariDriver();
-                break;
-            default:
-                throw new RuntimeException("Unsupported browser: " + browser);
         }
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(2));
     }

@@ -131,7 +131,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <includes>
-                                <include>**/es/codeurjc/ais/nitflex/integration/FilmUITest.java</include>
+                                <include>**/es/codeurjc/ais/nitflex/integration/*.java</include>
                             </includes>
                         </configuration>
                     </plugin>

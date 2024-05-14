@@ -33,17 +33,17 @@ class SeleniumTest {
 
     @BeforeEach
     public void setupTest() {
-        browser = System.getProperty("browser", "chrome");
+        browser = System.getProperty("browser");
         switch (browser) {
-            case "firefox":
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.addArguments("--headless");
-                driver = new FirefoxDriver(firefoxOptions);
-                break;
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--headless");
                 driver = new ChromeDriver(chromeOptions);
+                break;
+            case "firefox":
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.addArguments("--headless");
+                driver = new FirefoxDriver(firefoxOptions);
                 break;
             case "edge":
                 EdgeOptions edgeOptions = new EdgeOptions();
@@ -52,9 +52,6 @@ class SeleniumTest {
                 break;
             case "safari":
                 driver = new SafariDriver();
-                break;
-            default:
-                throw new RuntimeException("Unsupported browser: " + browser);
         }
         baseUrl = "http://localhost:" + port + "/";
     }

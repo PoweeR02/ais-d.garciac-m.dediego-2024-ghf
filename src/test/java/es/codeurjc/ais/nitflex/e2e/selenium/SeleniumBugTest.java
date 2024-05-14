@@ -32,7 +32,7 @@ class SeleniumBugTest {
 
     @BeforeEach
     public void setupTest() {
-        browser = System.getProperty("browser", "chrome");
+        browser = System.getProperty("browser");
         switch (browser) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
@@ -51,9 +51,6 @@ class SeleniumBugTest {
                 break;
             case "safari":
                 driver = new SafariDriver();
-                break;
-            default:
-                throw new RuntimeException("Unsupported browser: " + browser);
         }
         baseUrl = "http://localhost:" + port + "/";
     }
