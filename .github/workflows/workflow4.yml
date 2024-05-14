@@ -11,14 +11,21 @@ jobs:
     strategy:
       matrix:
         browser: [ chrome, firefox, edge, safari ]
-        os: [ linux, windows, macos ]
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
         exclude:
           - browser: edge
-            os: macos
+            os: ubuntu-latest
+            
           - browser: safari
-            os: windows
+            os: ubuntu-latest
+
           - browser: safari
-            os: linux
+            os: windows-latest
+            
+
+          - browser: edge
+            os: macos-latest
+          
 
     steps:
       - name: Checkout repository
