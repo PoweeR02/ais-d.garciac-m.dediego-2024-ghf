@@ -33,7 +33,7 @@ class SeleniumTest {
 
     @BeforeEach
     public void setupTest() {
-        browser = System.getProperty("browser", "firefox").toLowerCase();
+        browser = System.getProperty("browser", "chrome");
         switch (browser) {
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
