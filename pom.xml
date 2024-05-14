@@ -163,7 +163,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <includes>
-                                <include>**/es/codeurjc/ais/nitflex/smoke/SmokeTest.java</include>
+                                <include>**/es/codeurjc/ais/nitflex/smoke/FilmUITest.java</include>
                             </includes>
                         </configuration>
                     </plugin>
