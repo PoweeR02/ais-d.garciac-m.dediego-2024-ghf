@@ -25,7 +25,6 @@ jobs:
           - browser: edge
             os: macos-latest
           
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
