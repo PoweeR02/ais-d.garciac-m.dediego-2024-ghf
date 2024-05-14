@@ -115,7 +115,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <includes>
-                                <include>**/es/codeurjc/ais/nitflex/unitary/FilmServiceTest.java</include>
+                                <include>**/es/codeurjc/ais/nitflex/unitary/*.java</include>
                             </includes>
                         </configuration>
                     </plugin>
@@ -131,7 +131,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <includes>
-                                <include>**/es/codeurjc/ais/nitflex/integration/UrlUtilsTest.java</include>
+                                <include>**/es/codeurjc/ais/nitflex/integration/*.java</include>
                             </includes>
                         </configuration>
                     </plugin>
