@@ -39,6 +39,5 @@ jobs:
 
       - name: Run system tests
         run: |
-          java -cp src/e2e/selenium SeleniumTest.java SeleniumBugTest.java FilmUITest.java \
-            -Dbrowser=${{ matrix.browser }} \
-            -Dos=${{ matrix.os }}
+          mvn -Dbrowser=${{ matrix.browser }} -Dos=${{ matrix.os }} test -P selenium
+        
