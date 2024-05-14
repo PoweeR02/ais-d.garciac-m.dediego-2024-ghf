@@ -3,6 +3,7 @@ package es.codeurjc.ais.nitflex.e2e.selenium;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
@@ -37,6 +39,7 @@ class SeleniumTest {
     public static Map<String, List<String>> OperativeSystemToBrowser;
     private WebDriver driver;
     private String baseUrl;
+    protected WebDriverWait wait;
 
     private WebDriver getDriver() {
         WebDriver driver = null;
@@ -78,6 +81,7 @@ class SeleniumTest {
     @BeforeEach
     public void setupTest() {
         driver = getDriver();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     @AfterEach
