@@ -56,7 +56,7 @@ jobs:
     steps:
 
       - name: Change to project directory
-        run: C:\Users\david\Downloads\ais-d.garciac-m.dediego-2024-ghf
+        run: cd https://github.com/PoweeR02/ais-d.garciac-m.dediego-2024-ghf
       
       - name: Run smoke test
         run: |
