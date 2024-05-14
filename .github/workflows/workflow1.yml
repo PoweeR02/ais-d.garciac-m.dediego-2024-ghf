@@ -2,8 +2,6 @@ name: CI Workflow 1
 
 on:
   push:
-    branches-ignore:
-      - main
 
 jobs:
   test:
