@@ -21,10 +21,8 @@ class SmokeTest {
             fail("La propiedad del sistema 'host' no está configurada. Asegúrate de pasar la URL de la aplicación correctamente.");
         }
 
-        // Esperar a que la aplicación se inicie completamente (puedes ajustar este
-        // tiempo según tus necesidades)
         try {
-            Thread.sleep(5000); // Esperar 5 segundos
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
