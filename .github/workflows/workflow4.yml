@@ -1,35 +1,37 @@
-name: CI Workflow 4
+name: Workflow 4
 
 on:
   schedule:
-    - cron: '30 0 * * *'  # Ejecutar a las 2:15 CET
+    - cron: "54 11 * * *" # 10 : 36 -> "30 20 * * *"
 
 jobs:
-  run_system_tests:
-    runs-on: ${{ matrix.os }}
+  system-tests:
+    runs-on: matrix
     strategy:
       matrix:
-        os: [ubuntu, windows, macos]
-        browser: [chrome, firefox, edge, safari]
+        browser: [ chrome, firefox, edge, safari ]
+        os: [ linux, windows, macos ]
         exclude:
-          - os: ubuntu
-            browser: edge
+          - browser: edge
+            os: macos
+          - browser: safari
+            os: windows
+          - browser: safari
+            os: linux
 
-          - os: ubuntu
-            browser: safari
-
-          - os: windows
-            browser: safari
-
-          - os: macos
-            browser: edge
-          
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          distribution: 'temurin'
-          java-version: '17'
+          node-version: '16'
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run system tests
+        run: |
+          npm run test:system -- --browser ${{ matrix.browser }} --os ${{ matrix.os }}
