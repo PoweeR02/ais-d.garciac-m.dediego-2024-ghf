@@ -55,6 +55,9 @@ jobs:
     needs: deploy
     steps:
       
+      - name: Standard Checkout
+        uses: actions/checkout@v2
+
       - name: Run smoke test
         run: |
-          mvn test -P smoke
+          mvn -Dhost=http://ais-anuncios.westeurope.azurecontainer.io:8080 test
