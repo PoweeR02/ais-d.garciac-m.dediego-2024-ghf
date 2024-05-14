@@ -1,6 +1,7 @@
 name: CI Workflow 4
 
 on:
+  push:
   schedule:
     - cron: "20 12 * * *" # 10 : 36 -> "30 20 * * *"
 
@@ -37,6 +38,5 @@ jobs:
           java-version: '17'
 
       - name: Run system tests
-        run: |
-          mvn -Dbrowser=${{ matrix.browser }} -Dos=${{ matrix.os }} test -P selenium
+        run: mvn -Dbrowser=${{ matrix.browser }} -Dos=${{ matrix.os }} test -P selenium
         
