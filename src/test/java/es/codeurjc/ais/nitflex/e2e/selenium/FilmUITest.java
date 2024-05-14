@@ -44,23 +44,23 @@ public class FilmUITest {
         String os = System.getProperty("os");
         if (OperativeSystemToBrowser.get(os).contains(browser)) {
             switch (browser) {
-                case "safari":
-                    driver = new SafariDriver();
-                    break;
                 case "chrome":
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--headless");
                     driver = new ChromeDriver(chromeOptions);
+                    break;
+                case "firefox":
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.addArguments("--headless");
+                    driver = new FirefoxDriver(firefoxOptions);
                     break;
                 case "edge":
                     EdgeOptions options = new EdgeOptions();
                     options.addArguments("--headless");
                     driver = new EdgeDriver(options);
                     break;
-                case "firefox":
-                    FirefoxOptions firefoxOptions = new FirefoxOptions();
-                    firefoxOptions.addArguments("--headless");
-                    driver = new FirefoxDriver(firefoxOptions);
+                case "safari":
+                    driver = new SafariDriver();
             }
         }
 
