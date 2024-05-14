@@ -60,6 +60,7 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: '17'
+
       - name: Run smoke test
-        run: mvn -Dhost=$APP_HOST -Dtest=SmokeTest test
+        run: mvn -Dhost=http://ais-anuncios.westeurope.azurecontainer.io:8080/ -Dtest=SmokeTest test
         
