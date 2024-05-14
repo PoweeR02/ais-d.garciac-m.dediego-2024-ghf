@@ -7,7 +7,7 @@ on:
 
 jobs:
   system-tests:
-    runs-on: matrix
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         browser: [ chrome, firefox, edge, safari ]
@@ -21,7 +21,6 @@ jobs:
 
           - browser: safari
             os: windows-latest
-            
 
           - browser: edge
             os: macos-latest
