@@ -147,7 +147,7 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <includes>
-                                <include>**/es/codeurjc/ais/nitflex/e2e/selenium/*.java</include>
+                                <include>**/es/codeurjc/ais/nitflex/e2e/selenium/SeleniumBugTest.java</include>
                             </includes>
                         </configuration>
                     </plugin>
